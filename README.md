@@ -2,7 +2,7 @@
 
 This is an Arduino library for PN532 to use NFC technology. It's based on 
 [Adafruit_NFCShield_I2C](http://goo.gl/pk3FdB)
-, improved by [Seeed Studio](http://goo.gl/zh1iQh), added HSU(High Speed Uart) driver by [Elechouse](http://elechouse.com). 
+, improved by [Seeed Studio](http://goo.gl/zh1iQh), added HSU(High Speed Uart) driver by [Elechouse](http://elechouse.com), added shutdown / sleepmode by clarketronics.
 
 It works with:
 
