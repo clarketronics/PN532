@@ -1409,3 +1409,23 @@ int8_t PN532::felica_Release()
 
   return 1;
 }
+
+/**************************************************************************/
+/*!
+    @brief  Put reader to sleep
+    @return                          = 1: Success
+                                     < 0: error
+*/
+/**************************************************************************/
+bool PN532::shutDown(uint8_t wakeupSource){
+    pn532_packetbuffer[0] = PN532_COMMAND_POWERDOWN;
+    pn532_packetbuffer[1] =  wakeupSource; //(0x20, for SPI) (0x28 for SPI and RF detectionThe wakeup source(s) you want too use
+    pn532_packetbuffer[2] = 0x00; // To eneable the IRQ, 0x00 if you dont want too use the IRQ
+    DMSG("Shutting down RF module");
+
+    if(HAL(writeCommand)(pn532_packetbuffer, 3))
+    return pn532_packetbuffer[1];
+
+    delay(2);   //Delay to make sure the module is off.
+    return (0 < HAL(readResponse)(pn532_packetbuffer, sizeof(pn532_packetbuffer)));
+}

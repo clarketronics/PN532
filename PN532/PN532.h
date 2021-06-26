@@ -52,6 +52,13 @@
 
 #define PN532_MIFARE_ISO14443A              (0x00)
 
+// Wakup sources
+#define PN532_WAKEUP_SPI                    (0x20)
+#define PN532_WAKEUP_I2C                    (0x80)
+#define PN532_WAKEUP_GPIRQ                  (0x40)
+#define PN532_WAKEUP_HSU                    (0x10)
+#define PN532_WAKEUP_CI                     (0x08)
+
 // Mifare Commands
 #define MIFARE_CMD_AUTH_A                   (0x60)
 #define MIFARE_CMD_AUTH_B                   (0x61)
@@ -133,6 +140,7 @@ public:
 
     // Generic PN532 functions
     bool SAMConfig(void);
+    bool shutDown(uint8_t wakeupSource);
     uint32_t getFirmwareVersion(void);
     uint32_t readRegister(uint16_t reg);
     uint32_t writeRegister(uint16_t reg, uint8_t val);
